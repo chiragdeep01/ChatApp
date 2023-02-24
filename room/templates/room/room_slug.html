@@ -35,8 +35,10 @@
 {% endblock%}
 {% block script %}
 {{room.slug | json_script:"json_roomname"}}
+{{request.user.username | json_script:"json-username"}}
 <script>
-    const roomName = JSON.parse(document.getElementById("json_roomname").textContent)
+    const roomName = JSON.parse(document.getElementById("json_roomname").textContent);
+    const username = JSON.parse(document.getElementById("json-username").textContent);
     const chatsocket = new WebSocket(
         'ws://'
         + window.location.host
@@ -45,10 +47,36 @@
         + '/'
     );
     chatsocket.onmessage = function(e){
-        console.log("onmessage")
+        console.log("onmessage");
+        const data = JSON.parse(e.data);
+        if(data.message){
+            let html = '<div class="p-4 bg-gray-200 rounded-xl">';
+            html += '<p class="font-semibold">'+ data.username +'</p>';
+            html+='<p>'+data.message+'</p>';
+            html+='</div>';
+            document.querySelector('#chat-messages').innerHTML += html;
+        }
+        else{
+            alert("the message was empty")
+        }
     }
     chatsocket.onclose = function(e){
-        console.log("onclose")
+        console.log("onclose");
+    }
+    document.querySelector('#chat-message-submit').onclick = function(e){
+        e.preventDefault();
+        const messageinputDom = document.querySelector('#chat-message-input');
+        const message = messageinputDom.value;
+        console.log("message");
+        chatsocket.send(JSON.stringify(
+            {
+                'message' : message,
+                'username' : username,
+                'room' : roomName
+            }
+        ));
+        messageinputDom.value = "";
+        return false;
     }
 </script>
 {% endblock %}
