@@ -13,14 +13,6 @@
                 <p>{{message.message}}</p>
             </div>
         {% endfor %}
-            <!-- <div class="p-4 bg-gray-200 rounded-xl">
-                <p class="font-semibold">Username</p>
-                <p>The message is hello i am User</p>
-            </div>
-            <div class="p-4 bg-gray-200 rounded-xl">
-                <p class="font-semibold">Username</p>
-                <p>The message is hello i am User</p>
-            </div> -->
     </div>
 </div>
 
@@ -57,6 +49,7 @@
             html+='<p>'+data.message+'</p>';
             html+='</div>';
             document.querySelector('#chat-messages').innerHTML += html;
+            scrollToBottom();
         }
         else{
             alert("the message was empty")
@@ -80,5 +73,10 @@
         messageinputDom.value = "";
         return false;
     }
+    function scrollToBottom(){
+        const objDiv = document.querySelector("#chat-messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    scrollToBottom();
 </script>
 {% endblock %}
