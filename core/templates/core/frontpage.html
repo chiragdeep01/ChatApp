@@ -1,0 +1,12 @@
+{% extends 'core/base.html'%}
+{% block title%}Welcome | {% endblock%}
+
+{% block content%}
+<div class="p-20 text-center">
+    <h1 class="text-6xl text-white">ChatApp</h1>
+    {% if request.user.is_authenticated %}
+        <h1 class="text-3xl text-white mt-6">Hello {{request.user.username.title}} !!</h1>
+    {% endif %}
+</div>
+
+{% endblock%}
