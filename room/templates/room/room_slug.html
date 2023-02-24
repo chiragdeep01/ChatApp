@@ -33,3 +33,22 @@
     </form>
 </div>
 {% endblock%}
+{% block script %}
+{{room.slug | json_script:"json_roomname"}}
+<script>
+    const roomName = JSON.parse(document.getElementById("json_roomname").textContent)
+    const chatsocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+    chatsocket.onmessage = function(e){
+        console.log("onmessage")
+    }
+    chatsocket.onclose = function(e){
+        console.log("onclose")
+    }
+</script>
+{% endblock %}
