@@ -3,10 +3,22 @@
 {% block title %}Rooms | {% endblock %}
 
 {% block content %}
-<div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
+<!-- <div class="absolute flex justify-end">
+    <div>
+        <button class="relative mt-4 px-4 py-2 bg-white shadow rounded-xl text-center text-xl font-semibold">Create Room</button>
+    </div>
+</div> -->
+<div class="text-center">
+    <div class="absolute w-full flex justify-end p-5">
+        <button class="bg-blue px-3 py-1 font-semibold rounded-xl text-white border-white border-2 flex flex-row items-center">Create Room <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" height="40px" width="40px" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          </button>
+    </div>
+    <div class="py-20">
+        <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
+    </div>
 </div>
-
 <div class="w-full flex flex-wrap items-center">
     {% for room in rooms %}
         <div class="w-1/4 px-5 py-5">

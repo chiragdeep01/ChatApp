@@ -22,7 +22,7 @@
             {% if request.user.is_authenticated %}
                 <a href="{% url 'rooms'%}" class="text-white hover:text-gray-200">Rooms</a>
                 <a href="{% url 'logout'%}" class="bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700">Logout</a>
-            {% else %}
+                {% else %}
                 <a href="{% url 'login'%}" class="text-white hover:text-gray-200">LogIn</a>
                 <a href="{% url 'signup'%}" class="bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700">SignUp</a>
             {% endif %}
