@@ -22,12 +22,12 @@
     </div>
 </div>
 <div class="w-full flex flex-wrap items-center">
-    {% for room in rooms %}
+    {% for room_user in rooms_user %}
         <div class="w-1/4 px-5 py-5">
             <div class="p-4 bg-white shadow rounded-xl text-center">
-                <h2 class="mb-5 text-2xl font-semibold">{{ room.name }}</h2>
+                <h2 class="mb-5 text-2xl font-semibold">{{ room_user.room.name }}</h2>
 
-                <a href="{% url 'room_slug' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-blue-600 hover:bg-blue-700">Join</a>
+                <a href="{% url 'room_slug' room_user.room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-blue-600 hover:bg-blue-700">Join</a>
             </div>
         </div>
     {% endfor %}
