@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models.signals import pre_save
+import string
+import random
+from django.utils.text import slugify
 
 class Room(models.Model):
     name = models.CharField(max_length = 100)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
 class Message(models.Model):
     user = models.ForeignKey(User, related_name='message', on_delete=models.CASCADE)
@@ -13,3 +16,14 @@ class Message(models.Model):
     date_added = models.DateTimeField(auto_now=True)
     class Meta:
         ordering = ('date_added',)
+
+def generate_slug(sender, instance, *args, **kwargs):
+    name = instance.name
+    slug = slugify(name)
+    while sender.objects.filter(slug = slug).exists():
+        res = ''.join(random.choices(string.ascii_letters, k=4))
+        name = name + res
+        slug = slugify(name)
+    instance.slug = slug
+
+pre_save.connect(generate_slug, sender=Room)
