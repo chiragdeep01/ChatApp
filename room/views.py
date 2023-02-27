@@ -21,10 +21,10 @@ def room_slug(request, slug):
             Room_Member.objects.create(user = user, room = room)
 
     room = Room.objects.get(slug = slug)
-
     if Room_Member.objects.filter(user = request.user, room = room).exists():
+        room_members = Room_Member.objects.filter(room = room)
         messages = Message.objects.filter(room=room)[0:25]
-        return render(request,'room/room_slug.html',{'room':room,'messages':messages})
+        return render(request,'room/room_slug.html',{'room':room,'messages':messages,'room_members':room_members})
     
     return redirect('rooms')
 

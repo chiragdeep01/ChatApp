@@ -2,7 +2,7 @@
 {% block title%}Welcome | {% endblock%}
 
 {% block content%}
-<div class="text-center">
+<!-- <div class="text-center">
     <div class="absolute mt-3 w-full flex justify-end p-5">
         <div class="bg-white rounded-xl px-2">
             <form method="post" action="{% url 'room_slug' room.slug %}" class="flex items-center">
@@ -20,28 +20,66 @@
     <div class="p-10 text-center">
         <h1 class="text-6xl text-white">{{room.name}}</h1>
     </div>
+</div> -->
+
+
+<div class="mb-5 pb-10 pt-5 text-center">
+    <h1 class="text-6xl text-white">{{room.name}}</h1>
 </div>
-<div class="w-2/4 mx-auto p-4 bg-white rounded-xl">
-    <div class="chat-messages space-y-3" id="chat-messages">
-        {% for message in messages %}
-            <div class="p-4 bg-gray-200 rounded-xl">
-                <p class="font-semibold">{{message.user.username}}</p>
-                <p>{{message.message}}</p>
+<div class="flex w-full">
+    <div class="w-1/2 flex flex-col">
+        <div class="w-2/3 mx-auto bg-white rounded-xl px-2">
+            <form method="post" action="{% url 'room_slug' room.slug %}" class="flex items-center">
+                {% csrf_token %}
+                <input type="text" name="username" class="h-14 mr-3 flex-1 px-2 outline-0" placeholder="Enter Username" id="enter-User">
+        
+                <button 
+                    class="rounded-xl text-white bg-blue-600 p-3 my-3 px-5 hover:bg-blue-700"
+                    id="add-user"
+                    name="add-user"
+                >Add</button>
+            </form>
+        </div>
+        <div class="group-members mt-8 w-2/4 mx-auto bg-white rounded-xl p-5">
+            <p class="w-full text-center text-xl font-bold text-blue-600 mb-2">Group Members</p>
+            <div class="space-y-3" id="users-group">
+                {% for room_member in room_members %}
+                    <div class="p-4 bg-gray-200 rounded-xl">
+                        <p class="font-semibold">{{room_member.user}}</p>
+                    </div>
+                    <!-- <div class="p-4 bg-gray-200 rounded-xl">
+                        <p class="font-semibold">User2</p>
+                    </div>
+                    <div class="p-4 bg-gray-200 rounded-xl">
+                        <p class="font-semibold">User3</p>
+                    </div> -->
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     </div>
-</div>
-
-<div class="w-2/4 mt-6 mx-4 mx-auto mb-7 p-4 bg-white rounded-xl">
-    <form method="post" action="." class="flex">
-        <input type="text" name="content" class="flex-1 mr-3 p-2 outline-0" placeholder="Your message..." id="chat-message-input">
-
-        <button 
-            class="px-5 py-3 rounded-xl text-white bg-blue-600 hover:bg-blue-700"
-            id="chat-message-submit"
-            name="chat-message"
-        >Submit</button>
-    </form>
+    <div class="w-1/2">
+        <div class="w-5/6 mx-auto p-4 bg-white rounded-xl">
+            <div class="chat-messages space-y-3" id="chat-messages">
+                {% for message in messages %}
+                    <div class="p-4 bg-gray-200 rounded-xl">
+                        <p class="font-semibold">{{message.user.username}}</p>
+                        <p>{{message.message}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-5/6 mt-6 mx-4 mx-auto mb-7 p-4 bg-white rounded-xl">
+            <form method="post" action="." class="flex">
+                <input type="text" name="content" class="flex-1 mr-3 p-2 outline-0" placeholder="Your message..." id="chat-message-input">
+        
+                <button 
+                    class="px-5 py-3 rounded-xl text-white bg-blue-600 hover:bg-blue-700"
+                    id="chat-message-submit"
+                    name="chat-message"
+                >Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock%}
 {% block script %}
