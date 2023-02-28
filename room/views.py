@@ -20,6 +20,17 @@ def room_slug(request, slug):
             user = User.objects.get(username = username)
             Room_Member.objects.create(user = user, room = room)
 
+    if request.method=='POST' and 'remove-user' in request.POST:
+        username = request.POST.get('user')
+        if User.objects.filter(username = username).exists():
+            user = User.objects.get(username = username)
+            room = Room.objects.get(slug = slug)
+            member = Room_Member.objects.get(user = user, room = room)
+            member.delete()
+            if not Room_Member.objects.filter(room = room).exists():
+                room.delete()
+                return redirect('rooms')
+
     room = Room.objects.get(slug = slug)
     if Room_Member.objects.filter(user = request.user, room = room).exists():
         room_members = Room_Member.objects.filter(room = room)
