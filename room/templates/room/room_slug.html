@@ -1,28 +1,8 @@
 {% extends 'core/base.html'%}
+{% load static %}
 {% block title%}Welcome | {% endblock%}
 
 {% block content%}
-<!-- <div class="text-center">
-    <div class="absolute mt-3 w-full flex justify-end p-5">
-        <div class="bg-white rounded-xl px-2">
-            <form method="post" action="{% url 'room_slug' room.slug %}" class="flex items-center">
-                {% csrf_token %}
-                <input type="text" name="username" class="h-14 mr-3 flex-1 px-2 outline-0" placeholder="Enter Username" id="enter-User">
-        
-                <button 
-                    class="rounded-xl text-white bg-blue-600 p-3 my-3 px-5 hover:bg-blue-700"
-                    id="add-user"
-                    name="add-user"
-                >Add</button>
-            </form>
-        </div>
-    </div>
-    <div class="p-10 text-center">
-        <h1 class="text-6xl text-white">{{room.name}}</h1>
-    </div>
-</div> -->
-
-
 <div class="mb-5 pb-10 pt-5 text-center">
     <h1 class="text-6xl text-white">{{room.name}}</h1>
 </div>
@@ -44,15 +24,10 @@
             <p class="w-full text-center text-xl font-bold text-blue-600 mb-2">Group Members</p>
             <div class="space-y-3" id="users-group">
                 {% for room_member in room_members %}
-                    <div class="p-4 bg-gray-200 rounded-xl">
+                    <div class="p-4 bg-gray-200 rounded-xl flex justify-between w-full">
                         <p class="font-semibold">{{room_member.user}}</p>
+                        <button class="order-last"><img src="/static/images/remove.png" alt="" height="20px" width="20px"></button>
                     </div>
-                    <!-- <div class="p-4 bg-gray-200 rounded-xl">
-                        <p class="font-semibold">User2</p>
-                    </div>
-                    <div class="p-4 bg-gray-200 rounded-xl">
-                        <p class="font-semibold">User3</p>
-                    </div> -->
                 {% endfor %}
             </div>
         </div>
