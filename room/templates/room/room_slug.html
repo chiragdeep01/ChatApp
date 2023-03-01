@@ -52,8 +52,8 @@
         </div>
         <div class="w-5/6 mt-6 mx-4 mx-auto mb-7 p-4 bg-white rounded-xl">
             <form method="post" action="." class="flex">
+                {% csrf_token %}
                 <input type="text" name="content" class="flex-1 mr-3 p-2 outline-0" placeholder="Your message..." id="chat-message-input">
-        
                 <button 
                     class="px-5 py-3 rounded-xl text-white bg-blue-600 hover:bg-blue-700"
                     id="chat-message-submit"
