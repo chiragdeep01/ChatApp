@@ -27,7 +27,6 @@ SECRET_KEY = "django-insecure-sm)&digzgvwgqrc&-&rf4qgx*hi1$sm*a=&or)jl_c%(%c4#44
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.chatapp-production-20c4.up.railway.app']
 
 # Application definition
 
