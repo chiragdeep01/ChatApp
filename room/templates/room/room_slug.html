@@ -31,7 +31,7 @@
                             {% csrf_token %}
                             <input type="text" name="user" class="bg-gray-200 font-semibold outline-0" value="{{room_member.user}}" readonly>
                             {% if room.slug != "welcome" %}
-                                <button class="order-last ml-10" name="remove-user"><img src="/static/images/remove.png" alt="" height="20px" width="20px"></button>
+                                <button class="order-last ml-10" name="remove-user"><img src="{% static 'images/remove.png' %}" alt="" height="20px" width="20px"></button>
                             {% endif %}
                         </form>
                     </div>
