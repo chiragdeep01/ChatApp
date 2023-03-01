@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-sm)&digzgvwgqrc&-&rf4qgx*hi1$sm*a=&or)jl_c%(%c4#44
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://chatapp-production-20c4.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.chatapp-production-20c4.up.railway.app']
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "core",
     "room",
     "channels"
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
