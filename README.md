@@ -1,6 +1,6 @@
 
 # ChatApp
-A django based real-time chatroom application built with HTML, CSS, Tailwind on the frontend and for backend Django has been used along with websockets.
+A django based real-time chatroom application built with HTML, CSS, Tailwind, Javascript on the frontend and for backend Django has been used along with websockets.
 ## Features
 - Login/Signup.
 - Create Room.
